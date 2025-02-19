@@ -1,6 +1,7 @@
 {
 	"products": [
 		{
+			"id": 1,
 			"title": "Leche Entera",
 			"description": "Leche entera pasteurizada, rica en calcio y vitamina D",
 			"code": "LC001",
@@ -11,6 +12,7 @@
 			"thumbnails": ["leche-frente.jpg", "leche-info.jpg"]
 		},
 		{
+			"id": 2,
 			"title": "Pan Integral",
 			"description": "Pan integral de granos enteros, alto en fibra",
 			"code": "PAN002",
@@ -21,6 +23,7 @@
 			"thumbnails": ["pan-integral.jpg", "pan-corte.jpg"]
 		},
 		{
+			"id": 3,
 			"title": "Manzanas Rojas",
 			"description": "Manzanas rojas frescas, dulces y crujientes",
 			"code": "FRU003",
@@ -31,6 +34,7 @@
 			"thumbnails": ["manzana-roja.jpg", "manzanas-grupo.jpg"]
 		},
 		{
+			"id": 4,
 			"title": "Arroz Blanco",
 			"description": "Arroz blanco de grano largo, calidad premium",
 			"code": "ARR004",
@@ -41,6 +45,7 @@
 			"thumbnails": ["arroz-bolsa.jpg", "arroz-contenido.jpg"]
 		},
 		{
+			"id": 5,
 			"title": "Atún en Lata",
 			"description": "Atún en agua, bajo en grasa y alto en proteínas",
 			"code": "ATN005",
@@ -51,6 +56,7 @@
 			"thumbnails": ["atun-lata.jpg", "atun-abierto.jpg"]
 		},
 		{
+			"id": 6,
 			"title": "Yogurt Natural",
 			"description": "Yogurt natural sin azúcar añadido, probiótico",
 			"code": "YOG006",
@@ -61,6 +67,7 @@
 			"thumbnails": ["yogurt-frente.jpg", "yogurt-info.jpg"]
 		},
 		{
+			"id": 7,
 			"title": "Pasta de Tomate",
 			"description": "Salsa de tomate orgánica para pasta y pizzas",
 			"code": "SAL007",
@@ -71,6 +78,7 @@
 			"thumbnails": ["salsa-frente.jpg", "salsa-uso.jpg"]
 		},
 		{
+			"id": 8,
 			"title": "Huevos Orgánicos",
 			"description": "Huevos frescos de gallinas criadas en libertad",
 			"code": "HUE008",
@@ -81,6 +89,7 @@
 			"thumbnails": ["huevos-caja.jpg", "huevos-abiertos.jpg"]
 		},
 		{
+			"id": 9,
 			"title": "Papel Higiénico",
 			"description": "Papel higiénico doble hoja, paquete de 12 rollos",
 			"code": "PAP009",
@@ -91,6 +100,7 @@
 			"thumbnails": ["papel-paquete.jpg", "papel-individual.jpg"]
 		},
 		{
+			"id": 10,
 			"title": "Aceite de Oliva",
 			"description": "Aceite de oliva extra virgen, primera prensada",
 			"code": "ACE010",
@@ -101,6 +111,7 @@
 			"thumbnails": ["aceite-botella.jpg", "aceite-info.jpg"]
 		},
 		{
+			"id": 11,
 			"title": "Pollo Entero",
 			"description": "Pollo fresco entero sin hormonas añadidas",
 			"code": "POL011",
@@ -111,6 +122,7 @@
 			"thumbnails": ["pollo-empaque.jpg", "pollo-info.jpg"]
 		},
 		{
+			"id": 12,
 			"title": "Detergente Líquido",
 			"description": "Detergente concentrado para ropa, aroma lavanda",
 			"code": "DET012",
@@ -121,6 +133,7 @@
 			"thumbnails": ["detergente-frente.jpg", "detergente-uso.jpg"]
 		},
 		{
+			"id": 13,
 			"title": "Café Molido",
 			"description": "Café premium tostado y molido, tueste medio",
 			"code": "CAF013",
@@ -131,6 +144,7 @@
 			"thumbnails": ["cafe-bolsa.jpg", "cafe-granos.jpg"]
 		},
 		{
+			"id": 14,
 			"title": "Zanahorias",
 			"description": "Zanahorias frescas orgánicas por kilo",
 			"code": "VER014",
@@ -141,6 +155,7 @@
 			"thumbnails": ["zanahorias-grupo.jpg", "zanahoria-individual.jpg"]
 		},
 		{
+			"id": 15,
 			"title": "Jabón de Manos",
 			"description": "Jabón líquido antibacterial con aloe vera",
 			"code": "JAB015",
