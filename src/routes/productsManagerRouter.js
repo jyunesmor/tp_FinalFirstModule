@@ -9,7 +9,6 @@ const router = Router();
 router.get("/", async (req, res) => {
 	try {
 		const products = await productManager.getProducts();
-		console.log(products.length);
 		res.send(products);
 	} catch (error) {
 		res.status(404).send(error.message);
@@ -27,7 +26,6 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-	console.log(req.body);
 	const { title, code, price, stock, thumbnails } = req.body;
 
 	try {
@@ -46,9 +44,10 @@ router.post("/", async (req, res) => {
 				message: "Price and stock must be numbers",
 			});
 		}
-
+		const id = await generateId();
 		// Create new product object
 		const newProduct = await productManager.addProduct({
+			id,
 			code,
 			title,
 			price,
@@ -79,13 +78,15 @@ router.delete("/:id", async (req, res) => {
 	res.send(product);
 });
 
-function generateId(product) {
+const generateId = async () => {
 	let id = 1;
-	if (product.length > 0) {
-		const lastProduct = product[product.length - 1];
+	const products = await productManager.getProducts();
+	if (products.length > 0) {
+		const lastProduct = products[products.length - 1];
 		id = lastProduct.id + 1;
+		return id;
 	}
 	return id;
-}
+};
 
 module.exports = router;
