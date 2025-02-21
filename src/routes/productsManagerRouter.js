@@ -9,9 +9,12 @@ const router = Router();
 router.get("/", async (req, res) => {
 	try {
 		const products = await productManager.getProducts();
-		res.send(products);
+		res.status(202).send(products);
 	} catch (error) {
-		res.status(404).send(error.message);
+		res.status(404).json({
+			message: "Producto no encontrado",
+			error: error.message,
+		});
 	}
 });
 
@@ -19,9 +22,12 @@ router.get("/:id", async (req, res) => {
 	const { id } = req.params;
 	const product = await productManager.getProductsById(parseInt(id));
 	if (product) {
-		res.send(product);
+		res.status(202).send(product);
 	} else {
-		res.status(404).send("Product not found");
+		res.status(404).json({
+			message: "Producto no encontrado",
+			error: error.message,
+		});
 	}
 });
 
@@ -31,17 +37,17 @@ router.post("/", async (req, res) => {
 	try {
 		// Validate required fields
 		if (!title || !code || !price || !stock || !thumbnails) {
-			return res.status(400).json({
+			return res.status(206).json({
 				status: "error",
-				message: `All fields (${title},${price}, ${code}, ${stock}, ${thumbnails}) are required`,
+				message: `Todos los campos son requeridos`,
 			});
 		}
 
 		// Validate data types
 		if (typeof price !== "number" || typeof stock !== "number") {
-			return res.status(400).json({
+			return res.status(206).json({
 				status: "error",
-				message: "Price and stock must be numbers",
+				message: "El precio y Stock deben estar ingresados en formato númerico",
 			});
 		}
 		const id = await generateId();
@@ -55,13 +61,9 @@ router.post("/", async (req, res) => {
 			thumbnails,
 		});
 
-		res.status(201).json({
-			status: "success",
-			message: "Product created successfully",
-		});
+		res.status(201).send("Producto creado exitosamente");
 	} catch (error) {
 		res.status(500).json({
-			status: "error",
 			message: "Internal server error",
 			error: error.message,
 		});
@@ -72,27 +74,30 @@ router.put("/:id", async (req, res) => {
 	try {
 		const body = req.body;
 		const { id } = req.params;
-		console.log(`el ID es ${id}`);
 		const products = await productManager.updateProduct(id, body);
-		console.log(products);
 
 		res.status(201).json({
-			status: "success",
-			message: "Product Updated successfully",
+			message: "Producto Actualizado Exitosamente",
 		});
 	} catch (error) {
-		res.status(500).json({
-			status: "error",
-			message: "Internal server error",
+		res.status(304).json({
+			message: "Producto no Actualizado",
 			error: error.message,
 		});
 	}
 });
 
 router.delete("/:id", async (req, res) => {
-	const { id } = req.params;
-	await productManager.removeProductsById(id);
-	res.send("Product deleted successfully");
+	try {
+		const { id } = req.params;
+		await productManager.removeProductsById(id);
+		res.status(201).send("Producto eliminado exitosamente");
+	} catch {
+		res.status(500).json({
+			message: "Error interno del servidor",
+			error: error.message,
+		});
+	}
 });
 
 const generateId = async () => {
