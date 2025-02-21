@@ -8,26 +8,6 @@ class ProductManager {
 		this.path = ruteFile;
 	}
 
-	// Add product and id generated to the Cart
-
-	/* async addProduct(product) {
-		if (!product) {
-			throw new Error("Product is required");
-		}
-		const products = [];
-		if (!fs.existsSync(this.path)) {
-			return await fs.promises.writeFile(this.path, JSON.stringify(products));
-		} else {
-			
-			const productsPath = JSON.parse(
-				await fs.promises.readFile(this.path, "utf8")
-			);
-			products.push(...productsPath, product);
-
-			return await fs.promises.writeFile(this.path, JSON.stringify(products));
-		}
-	}*/
-
 	async addProduct(product) {
 		if (!product) {
 			throw new Error("Product is required");
@@ -41,7 +21,7 @@ class ProductManager {
 		// Add new product
 		products.push(product);
 		// Write back to file
-		await fs.promises.writeFile(this.path, JSON.stringify(products));
+		await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4));
 		return product;
 	}
 
@@ -63,17 +43,34 @@ class ProductManager {
 		return products.products.find((product) => product.id === id);
 	}
 
+	// get a product by id
+
+	async updateProduct(id, body) {
+		const fileContent = await fs.promises.readFile(this.path, "utf8");
+		const products = JSON.parse(fileContent);
+		const productIndex = products.findIndex(
+			(product) => product.id === parseInt(id)
+		);
+
+		products[productIndex] = { ...products[productIndex], ...body };
+		await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4));
+		return products;
+	}
+
 	// remove a product by id
 
 	async removeProductsById(id) {
-		const product = await this.getProductsById(id);
-		console.log(product);
-		return product;
+		console.log(parseInt(id));
+		const fileContent = await fs.promises.readFile(this.path, "utf8");
+		const products = JSON.parse(fileContent);
+		const productIndex = products.findIndex(
+			(product) => product.id === parseInt(id)
+		);
+		console.log(productIndex);
+		products.splice(productIndex, 1);
+		await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4));
+		console.log(products);
 	}
-
-	// method to get the total price of all products in the cart
-
-	getTotal() {}
 }
 
 module.exports = ProductManager;

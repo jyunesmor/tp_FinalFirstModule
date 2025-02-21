@@ -55,13 +55,30 @@ router.post("/", async (req, res) => {
 			thumbnails,
 		});
 
-		// Here you would typically add your database logic
-		// For example: await ProductModel.create(newProduct);
-
 		res.status(201).json({
 			status: "success",
 			message: "Product created successfully",
-			data: newProduct,
+		});
+	} catch (error) {
+		res.status(500).json({
+			status: "error",
+			message: "Internal server error",
+			error: error.message,
+		});
+	}
+});
+
+router.put("/:id", async (req, res) => {
+	try {
+		const body = req.body;
+		const { id } = req.params;
+		console.log(`el ID es ${id}`);
+		const products = await productManager.updateProduct(id, body);
+		console.log(products);
+
+		res.status(201).json({
+			status: "success",
+			message: "Product Updated successfully",
 		});
 	} catch (error) {
 		res.status(500).json({
@@ -74,8 +91,8 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
 	const { id } = req.params;
-	const product = await productManager.removeProductsById(parseInt(id));
-	res.send(product);
+	await productManager.removeProductsById(id);
+	res.send("Product deleted successfully");
 });
 
 const generateId = async () => {

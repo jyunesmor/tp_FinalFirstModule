@@ -1,1 +1,18 @@
-[{"id":1,"code":"PAN002","title":"Pan Integral","price":3.49,"stock":50,"thumbnails":"pan-integral.jpg"},{"id":2,"code":"PAN002","title":"Pan Integral","price":3.49,"stock":50,"thumbnails":"pan-integral.jpg"}]
+[
+    {
+        "id": 2,
+        "code": "LEC12348",
+        "title": "Leche Entera",
+        "price": 6.49,
+        "stock": 150,
+        "thumbnails": "pan-AVENA.jpg"
+    },
+    {
+        "id": 3,
+        "code": "HASDE0012",
+        "title": "Tortilla",
+        "price": 2.49,
+        "stock": 60,
+        "thumbnails": "tort.jpg"
+    }
+]
