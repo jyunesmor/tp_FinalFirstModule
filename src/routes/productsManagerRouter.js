@@ -32,7 +32,7 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateProducts, validateNumbers, async (req, res) => {
 	try {
 		const {
 			title,

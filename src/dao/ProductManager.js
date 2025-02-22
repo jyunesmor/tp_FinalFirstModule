@@ -60,16 +60,13 @@ class ProductManager {
 	// remove a product by id
 
 	async removeProductsById(id) {
-		console.log(parseInt(id));
 		const fileContent = await fs.promises.readFile(this.path, "utf8");
 		const products = JSON.parse(fileContent);
 		const productIndex = products.findIndex(
 			(product) => product.id === parseInt(id)
 		);
-		console.log(productIndex);
 		products.splice(productIndex, 1);
 		await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4));
-		console.log(products);
 	}
 }
 

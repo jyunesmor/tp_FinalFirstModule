@@ -1,4 +1,4 @@
-function validateNumbers(req, res, next) {
+const validateNumbers = (req, res, next) => {
 	const { price, stock } = req.body;
 
 	// Validate data types
@@ -9,6 +9,6 @@ function validateNumbers(req, res, next) {
 		});
 	}
 	next();
-}
+};
 
 module.exports = { validateNumbers };

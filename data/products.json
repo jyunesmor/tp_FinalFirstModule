@@ -1,16 +1,30 @@
 [
     {
-        "id": 1,
-        "title": "Leche",
-        "description": "Leche entera de 1 litro",
-        "code": "LEC001",
-        "price": 1.2,
+        "id": 2,
+        "title": "Arroz Blanco",
+        "description": "Arroz blanco de grano largo, calidad premium",
+        "code": "ARR004",
+        "price": 4.99,
         "status": true,
-        "stock": 50,
-        "category": "Lácteos",
+        "stock": 150,
+        "category": "Granos",
         "thumbnails": [
-            "leche-frente.jpg",
-            "leche-info.jpg"
+            "arroz-bolsa.jpg",
+            "arroz-contenido.jpg"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Atún en Lata",
+        "description": "Atún en agua, bajo en grasa y alto en proteínas",
+        "code": "ATN005",
+        "price": 1.99,
+        "status": true,
+        "stock": 180,
+        "category": "Conservas",
+        "thumbnails": [
+            "atun-lata.jpg",
+            "atun-abierto.jpg"
         ]
     }
 ]

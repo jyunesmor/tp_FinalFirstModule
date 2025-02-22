@@ -1,4 +1,4 @@
-function validateProducts(req, res, next) {
+const validateProducts = (req, res, next) => {
 	const {
 		title,
 		description,
@@ -22,6 +22,6 @@ function validateProducts(req, res, next) {
 		return res.status(206).json({ message: "Todos los Campos son requeridos" });
 	}
 	next();
-}
+};
 
-module.exports = validateProducts;
+module.exports = { validateProducts };
