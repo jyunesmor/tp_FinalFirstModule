@@ -1,8 +1,10 @@
 const Router = require("express").Router;
 const ProductManager = require("../dao/ProductManager.js");
 const ruteFile = "./data/products.json";
+const { validateProducts } = require("../middlewares/validateProducts.js");
+const { validateNumbers } = require("../middlewares/validateNumbers.js");
 
-productManager = new ProductManager(ruteFile);
+const productManager = new ProductManager(ruteFile);
 
 const router = Router();
 
@@ -20,44 +22,39 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 	const { id } = req.params;
-	const product = await productManager.getProductsById(parseInt(id));
+	const product = await productManager.getProductById(parseInt(id));
 	if (product) {
 		res.status(202).send(product);
 	} else {
-		res.status(404).json({
-			message: "Producto no encontrado",
-			error: error.message,
-		});
+		res
+			.status(404)
+			.send(`El producto con el id: ${id} no se encuentra en la base de datos`);
 	}
 });
 
 router.post("/", async (req, res) => {
-	const { title, code, price, stock, thumbnails } = req.body;
-
 	try {
-		// Validate required fields
-		if (!title || !code || !price || !stock || !thumbnails) {
-			return res.status(206).json({
-				status: "error",
-				message: `Todos los campos son requeridos`,
-			});
-		}
-
-		// Validate data types
-		if (typeof price !== "number" || typeof stock !== "number") {
-			return res.status(206).json({
-				status: "error",
-				message: "El precio y Stock deben estar ingresados en formato númerico",
-			});
-		}
+		const {
+			title,
+			description,
+			code,
+			price,
+			status,
+			stock,
+			category,
+			thumbnails,
+		} = req.body;
 		const id = await generateId();
 		// Create new product object
-		const newProduct = await productManager.addProduct({
+		await productManager.addProduct({
 			id,
-			code,
 			title,
+			description,
+			code,
 			price,
+			status,
 			stock,
+			category,
 			thumbnails,
 		});
 
@@ -74,7 +71,7 @@ router.put("/:id", async (req, res) => {
 	try {
 		const body = req.body;
 		const { id } = req.params;
-		const products = await productManager.updateProduct(id, body);
+		await productManager.updateProduct(id, body);
 
 		res.status(201).json({
 			message: "Producto Actualizado Exitosamente",

@@ -38,9 +38,9 @@ class ProductManager {
 
 	// get a product by id
 
-	async getProductsById(id) {
+	async getProductById(id) {
 		const products = JSON.parse(await fs.promises.readFile(this.path, "utf8"));
-		return products.products.find((product) => product.id === id);
+		return products.find((product) => product.id === id);
 	}
 
 	// get a product by id

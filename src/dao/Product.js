@@ -1,18 +1,34 @@
 class Products {
 	id = " ";
 	title = " ";
-	price = " ";
+	description = " ";
 	code = " ";
-	thumbnail = " ";
+	price = " ";
+	status = " ";
 	stock = " ";
+	category = " ";
+	thumbnails = " ";
 
-	constructor(id, title, price, code, thumbnail, stock) {
+	constructor(
+		id,
+		title,
+		description,
+		code,
+		price,
+		status,
+		stock,
+		category,
+		thumbnails
+	) {
 		this.id = id;
 		this.title = title;
-		this.price = price;
+		this.description = description;
 		this.code = code;
-		this.thumbnail = thumbnail;
+		this.price = price;
+		this.status = status;
 		this.stock = stock;
+		this.category = category;
+		this.thumbnails = thumbnails;
 	}
 }
 

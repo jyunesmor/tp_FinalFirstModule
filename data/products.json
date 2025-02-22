@@ -1,18 +1,16 @@
 [
     {
-        "id": 2,
-        "code": "LEC12348",
-        "title": "Leche Entera",
-        "price": 6.49,
-        "stock": 150,
-        "thumbnails": "pan-AVENA.jpg"
-    },
-    {
-        "id": 3,
-        "code": "HASDE0012",
-        "title": "Tortilla",
-        "price": 2.49,
-        "stock": 60,
-        "thumbnails": "tort.jpg"
+        "id": 1,
+        "title": "Leche",
+        "description": "Leche entera de 1 litro",
+        "code": "LEC001",
+        "price": 1.2,
+        "status": true,
+        "stock": 50,
+        "category": "Lácteos",
+        "thumbnails": [
+            "leche-frente.jpg",
+            "leche-info.jpg"
+        ]
     }
 ]
