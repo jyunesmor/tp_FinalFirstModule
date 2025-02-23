@@ -8,8 +8,10 @@ const productManager = new ProductManager(ruteFile);
 
 const router = Router();
 
+// Ruta para Obrtener Productos de base de datos
 router.get("/", async (req, res) => {
 	try {
+		// Obtencion de productos de base de datos.
 		const products = await productManager.getProducts();
 		res.status(202).send(products);
 	} catch (error) {
@@ -20,8 +22,10 @@ router.get("/", async (req, res) => {
 	}
 });
 
+// Ruta para Obrtener Producto por ID
 router.get("/:id", async (req, res) => {
 	const { id } = req.params;
+	// Obtencion de producto por su ID de base de datos.
 	const product = await productManager.getProductById(parseInt(id));
 	if (product) {
 		res.status(202).send(product);
@@ -32,6 +36,7 @@ router.get("/:id", async (req, res) => {
 	}
 });
 
+// Ruta para Creacion Producto en base de datos
 router.post("/", validateProducts, validateNumbers, async (req, res) => {
 	try {
 		const {
@@ -44,8 +49,10 @@ router.post("/", validateProducts, validateNumbers, async (req, res) => {
 			category,
 			thumbnails,
 		} = req.body;
+
+		// Creacion automatica del Id, teniendo en cuenta el ultimo id de la base de datos.
 		const id = await generateId();
-		// Create new product object
+		// Creacion de producto y persistencia en base de datos.
 		await productManager.addProduct({
 			id,
 			title,
@@ -67,12 +74,13 @@ router.post("/", validateProducts, validateNumbers, async (req, res) => {
 	}
 });
 
-router.put("/:id", async (req, res) => {
+// Ruta para Modificacion Producto por ID
+router.put("/:id", validateProducts, validateNumbers, async (req, res) => {
 	try {
 		const body = req.body;
 		const { id } = req.params;
+		// Actualizacion de producto y persistencia en base de datos.
 		await productManager.updateProduct(id, body);
-
 		res.status(201).json({
 			message: "Producto Actualizado Exitosamente",
 		});
@@ -84,9 +92,11 @@ router.put("/:id", async (req, res) => {
 	}
 });
 
+// Ruta para Eliminar Producto por ID
 router.delete("/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
+		// Remocion del producto y persistencia en base de datos.
 		await productManager.removeProductsById(id);
 		res.status(201).send("Producto eliminado exitosamente");
 	} catch {
@@ -97,11 +107,16 @@ router.delete("/:id", async (req, res) => {
 	}
 });
 
+// Función para Generacion de ID Automatico.
+
 const generateId = async () => {
 	let id = 1;
+	// Obtencion de productos de base de datos.
 	const products = await productManager.getProducts();
 	if (products.length > 0) {
+		// Obtencion del ultimo producto de base de datos.
 		const lastProduct = products[products.length - 1];
+		// Obtencion del ultimo id de base de datos y agrega 1.
 		id = lastProduct.id + 1;
 		return id;
 	}
