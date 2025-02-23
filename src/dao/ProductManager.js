@@ -25,8 +25,7 @@ class ProductManager {
 		return product;
 	}
 
-	//	get all products
-
+	//	Obtener Productos de la base de datos
 	async getProducts() {
 		if (fs.existsSync(this.path)) {
 			return JSON.parse(await fs.promises.readFile(this.path, "utf8"));
@@ -36,14 +35,14 @@ class ProductManager {
 		}
 	}
 
-	// get a product by id
+	// Obtener Producto por ID de la base de datos
 
 	async getProductById(id) {
 		const products = JSON.parse(await fs.promises.readFile(this.path, "utf8"));
 		return products.find((product) => product.id === id);
 	}
 
-	// get a product by id
+	// Actualización de Producto por Id de la base de datos
 
 	async updateProduct(id, body) {
 		const fileContent = await fs.promises.readFile(this.path, "utf8");
@@ -57,7 +56,7 @@ class ProductManager {
 		return products;
 	}
 
-	// remove a product by id
+	// Eliminar Producto por ID de la base de datos
 
 	async removeProductsById(id) {
 		const fileContent = await fs.promises.readFile(this.path, "utf8");
