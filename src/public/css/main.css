@@ -1,0 +1,9 @@
+html {
+	color: aquamarine;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.card {
+	gap: 1rem;
+}

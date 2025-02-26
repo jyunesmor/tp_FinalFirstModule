@@ -1,10 +1,9 @@
 const { Router } = require("express");
 const ProductManager = require("../dao/ProductManager.js");
-const ruteFile = "./data/products.json";
 const { validateProducts } = require("../middlewares/validateProducts.js");
 const { validateNumbers } = require("../middlewares/validateNumbers.js");
 
-const productManager = new ProductManager(ruteFile);
+const productManager = new ProductManager();
 
 const router = Router();
 
