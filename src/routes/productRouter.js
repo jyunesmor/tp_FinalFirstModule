@@ -1,4 +1,4 @@
-const Router = require("express").Router;
+const { Router } = require("express");
 const ProductManager = require("../dao/ProductManager.js");
 const ruteFile = "./data/products.json";
 const { validateProducts } = require("../middlewares/validateProducts.js");
@@ -37,45 +37,50 @@ router.get("/:id", async (req, res) => {
 });
 
 // Ruta para Creacion Producto en base de datos
-router.post("/", validateProducts, validateNumbers, async (req, res) => {
-	try {
-		const {
-			title,
-			description,
-			code,
-			price,
-			status,
-			stock,
-			category,
-			thumbnails,
-		} = req.body;
+router.post(
+	"/products",
+	validateProducts,
+	validateNumbers,
+	async (req, res) => {
+		try {
+			const {
+				title,
+				description,
+				code,
+				price,
+				status,
+				stock,
+				category,
+				thumbnails,
+			} = req.body;
+			console.log(req.body);
+			// Creacion automatica del Id, teniendo en cuenta el ultimo id de la base de datos.
+			const id = await generateId();
+			// Creacion de producto y persistencia en base de datos.
+			await productManager.addProduct({
+				id,
+				title,
+				description,
+				code,
+				price,
+				status,
+				stock,
+				category,
+				thumbnails,
+			});
 
-		// Creacion automatica del Id, teniendo en cuenta el ultimo id de la base de datos.
-		const id = await generateId();
-		// Creacion de producto y persistencia en base de datos.
-		await productManager.addProduct({
-			id,
-			title,
-			description,
-			code,
-			price,
-			status,
-			stock,
-			category,
-			thumbnails,
-		});
-
-		res.status(201).send("Producto creado exitosamente");
-	} catch (error) {
-		res.status(500).json({
-			message: "Internal server error",
-			error: error.message,
-		});
+			res.status(201).send("Producto creado exitosamente");
+		} catch (error) {
+			res.status(500).json({
+				message: "Internal server error",
+				error: error.message,
+			});
+		}
 	}
-});
+);
 
 // Ruta para Modificacion Producto por ID
-router.put("/:id", validateProducts, validateNumbers, async (req, res) => {
+router.put("/:id", validateNumbers, async (req, res) => {
 	try {
 		const body = req.body;
 		const { id } = req.params;

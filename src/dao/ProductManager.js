@@ -1,27 +1,31 @@
 const fs = require("fs");
-const Product = require("./Product");
-
-const p = new Product();
 
 class ProductManager {
+	products = [];
+
 	constructor(ruteFile) {
 		this.path = ruteFile;
 	}
 
 	async addProduct(product) {
+		console.log(product);
 		if (!product) {
 			throw new Error("Product is required");
 		}
-		let products = [];
+
 		// Read existing products if file exists
 		if (fs.existsSync(this.path)) {
 			const fileContent = await fs.promises.readFile(this.path, "utf8");
-			products = JSON.parse(fileContent);
+			this.products = JSON.parse(fileContent);
 		}
 		// Add new product
-		products.push(product);
+		this.products.push(product);
+		console.log(this.products);
 		// Write back to file
-		await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4));
+		await fs.promises.writeFile(
+			this.path,
+			JSON.stringify(this.products, null, 4)
+		);
 		return product;
 	}
 
@@ -38,30 +42,30 @@ class ProductManager {
 	// Obtener Producto por ID de la base de datos
 
 	async getProductById(id) {
-		const products = JSON.parse(await fs.promises.readFile(this.path, "utf8"));
-		return products.find((product) => product.id === id);
+		this.products = JSON.parse(await fs.promises.readFile(this.path, "utf8"));
+		return this.products.find((product) => product.id === id);
 	}
 
 	// Actualización de Producto por Id de la base de datos
 
 	async updateProduct(id, body) {
 		const fileContent = await fs.promises.readFile(this.path, "utf8");
-		const products = JSON.parse(fileContent);
-		const productIndex = products.findIndex(
+		this.products = JSON.parse(fileContent);
+		const productIndex = this.products.findIndex(
 			(product) => product.id === parseInt(id)
 		);
 
-		products[productIndex] = { ...products[productIndex], ...body };
+		this.products[productIndex] = { ...this.products[productIndex], ...body };
 		await fs.promises.writeFile(this.path, JSON.stringify(products, null, 4));
-		return products;
+		return this.products;
 	}
 
 	// Eliminar Producto por ID de la base de datos
 
 	async removeProductsById(id) {
 		const fileContent = await fs.promises.readFile(this.path, "utf8");
-		const products = JSON.parse(fileContent);
-		const productIndex = products.findIndex(
+		this.products = JSON.parse(fileContent);
+		const productIndex = this.products.findIndex(
 			(product) => product.id === parseInt(id)
 		);
 		products.splice(productIndex, 1);
