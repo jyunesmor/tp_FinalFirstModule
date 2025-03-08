@@ -1,8 +1,10 @@
 const express = require("express");
 const productRouter = require("./routes/productRouter.js");
 const viewsRouter = require("./routes/viewsRouter.js");
-
+const { Server } = require("socket.io");
 const { engine } = require("express-handlebars");
+
+let io = undefined;
 
 const PORT = 8080;
 
@@ -17,9 +19,23 @@ app.set("view engine", "handlebars");
 app.set("views", "./src/views");
 
 // Routes
-app.use("/api/products", productRouter);
-app.use("/api/views", viewsRouter);
+app.use(
+	"/api/products",
+	(req, res, next) => {
+		req.io = io;
+		next();
+	},
+	productRouter
+);
+app.use("/", viewsRouter);
 
-app.listen(PORT, () => {
+app.get("/", (req, res) => {
+	res.setHeader("content-type", "text/plain");
+	res.status(200).send("Server is running");
+});
+
+const serverHttp = app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
 });
+
+io = new Server(serverHttp);

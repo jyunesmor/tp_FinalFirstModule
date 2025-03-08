@@ -36,47 +36,42 @@ router.get("/:id", async (req, res) => {
 });
 
 // Ruta para Creacion Producto en base de datos
-router.post(
-	"/products",
-	validateProducts,
-	validateNumbers,
-	async (req, res) => {
-		try {
-			const {
-				title,
-				description,
-				code,
-				price,
-				status,
-				stock,
-				category,
-				thumbnails,
-			} = req.body;
-			console.log(req.body);
-			// Creacion automatica del Id, teniendo en cuenta el ultimo id de la base de datos.
-			const id = await generateId();
-			// Creacion de producto y persistencia en base de datos.
-			await productManager.addProduct({
-				id,
-				title,
-				description,
-				code,
-				price,
-				status,
-				stock,
-				category,
-				thumbnails,
-			});
+router.post("/", validateProducts, validateNumbers, async (req, res) => {
+	try {
+		const {
+			title,
+			description,
+			code,
+			price,
+			status,
+			stock,
+			category,
+			thumbnails,
+		} = req.body;
+		// Creacion automatica del Id, teniendo en cuenta el ultimo id de la base de datos.
+		const id = await generateId();
+		// Creacion de producto y persistencia en base de datos.
+		const newProduct = await productManager.addProduct({
+			id,
+			title,
+			description,
+			code,
+			price,
+			status,
+			stock,
+			category,
+			thumbnails,
+		});
 
-			res.status(201).send("Producto creado exitosamente");
-		} catch (error) {
-			res.status(500).json({
-				message: "Internal server error",
-				error: error.message,
-			});
-		}
+		req.io.emit("newProduct", newProduct);
+		res.status(201).send("Producto creado exitosamente");
+	} catch (error) {
+		res.status(500).json({
+			message: "Internal server error",
+			error: error.message,
+		});
 	}
-);
+});
 
 // Ruta para Modificacion Producto por ID
 router.put("/:id", validateNumbers, async (req, res) => {
@@ -101,9 +96,10 @@ router.delete("/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
 		// Remocion del producto y persistencia en base de datos.
-		await productManager.removeProductsById(id);
+		const deleteProduct = await productManager.removeProductsById(id);
+		req.io.emit("deleteProduct", deleteProduct);
 		res.status(201).send("Producto eliminado exitosamente");
-	} catch {
+	} catch (error) {
 		res.status(500).json({
 			message: "Error interno del servidor",
 			error: error.message,

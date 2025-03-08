@@ -14,14 +14,17 @@ class ProductManager {
 
 		// Read existing products if file exists
 		if (fs.existsSync(this.path)) {
-			const fileContent = await fs.promises.readFile(path, "utf8");
+			const fileContent = await fs.promises.readFile(this.path, "utf8");
 			this.products = JSON.parse(fileContent);
 		}
 		// Add new product
 		this.products.push(product);
 		console.log(this.products);
 		// Write back to file
-		await fs.promises.writeFile(path, JSON.stringify(this.products, null, 4));
+		await fs.promises.writeFile(
+			this.path,
+			JSON.stringify(this.products, null, 4)
+		);
 		return product;
 	}
 
@@ -38,7 +41,7 @@ class ProductManager {
 	// Obtener Producto por ID de la base de datos
 
 	async getProductById(id) {
-		this.products = JSON.parse(await fs.promises.readFile(path, "utf8"));
+		this.products = JSON.parse(await fs.promises.readFile(this.path, "utf8"));
 		return this.products.find((product) => product.id === id);
 	}
 

@@ -1,0 +1,19 @@
+{{> header}}
+
+<h1>Product</h1>
+<div class="d-flex flex-wrap gap-3">
+		<div class="card" style="width: 18rem;">
+			{{! <img src="..." class="card-img-top" alt="..." /> }}
+			<div class="card-body">
+				<h5 class="card-title">{{product.title}}</h5>
+				<p class="card-text">Categoria {{product.category}}</p>
+				<p class="card-text">Precio ${{product.price}}</p>
+				<p class="card-text">Stock {{product.stock}}</p>
+				<p class="card-text">Descripción {{product.description}}</p>
+				<div class="d-flex justify-content-between">
+					<a href="#" class="btn btn-primary">Comprar</a>
+					<a href="/products" class="btn btn-primary">Volver</a>
+				</div>
+			</div>
+		</div>
+</div>

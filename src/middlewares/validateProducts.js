@@ -1,4 +1,4 @@
-const validateProducts = (req, res, next) => {
+const validateProducts = (err, req, res, next) => {
 	const {
 		title,
 		description,
@@ -19,7 +19,7 @@ const validateProducts = (req, res, next) => {
 		!category ||
 		!thumbnails
 	) {
-		return res.status(206).json({ message: "Todos los Campos son requeridos" });
+		return res.status(206).json({ message: console.error(err) });
 	}
 	next();
 };
