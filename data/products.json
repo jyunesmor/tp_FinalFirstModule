@@ -85,44 +85,16 @@
     },
     {
         "id": 8,
-        "title": "Pasta de Tomate",
-        "description": "Salsa de tomate orgánica para pasta y pizzas",
-        "code": "SAL007",
-        "price": 2.49,
-        "status": false,
-        "stock": 14,
-        "category": "Salsas",
-        "thumbnails": [
-            "salsa-frente.jpg",
-            "salsa-uso.jpg"
-        ]
-    },
-    {
-        "id": 9,
-        "title": "Pasta de Tomate",
-        "description": "Salsa de tomate orgánica para pasta y pizzas",
-        "code": "SAL007",
-        "price": 2.49,
-        "status": false,
-        "stock": 14,
-        "category": "Salsas",
-        "thumbnails": [
-            "salsa-frente.jpg",
-            "salsa-uso.jpg"
-        ]
-    },
-    {
-        "id": 10,
-        "title": "Aceite de Oliva",
-        "description": "Aceite de oliva extra virgen, primera prensada",
-        "code": "ACE010",
-        "price": 7.99,
+        "title": "Papel Higiénico",
+        "description": "Papel higiénico doble hoja, paquete de 12 rollos",
+        "code": "PAP009",
+        "price": 8.99,
         "status": true,
-        "stock": 90,
-        "category": "Aceites",
+        "stock": 120,
+        "category": "Limpieza",
         "thumbnails": [
-            "aceite-botella.jpg",
-            "aceite-info.jpg"
+            "papel-paquete.jpg",
+            "papel-individual.jpg"
         ]
     }
 ]
