@@ -64,7 +64,7 @@ router.post("/", validateProducts, validateNumbers, async (req, res) => {
 		});
 
 		req.io.emit("newProduct", newProduct);
-		res.status(201).send("Producto creado exitosamente");
+		res.status(201);
 	} catch (error) {
 		res.status(500).json({
 			message: "Internal server error",

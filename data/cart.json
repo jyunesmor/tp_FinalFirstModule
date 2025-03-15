@@ -1,0 +1,44 @@
+[
+  {
+    "id": 4,
+    "title": "Yogurt Natural",
+    "description": "Yogurt natural sin azúcar añadido, probiótico",
+    "code": "YOG006",
+    "price": 3.99,
+    "status": true,
+    "stock": 100,
+    "category": "Lácteos",
+    "thumbnails": [
+      "yogurt-frente.jpg",
+      "yogurt-info.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Arroz Blanco",
+    "description": "Arroz blanco de grano largo, calidad premium",
+    "code": "ARR004",
+    "price": 4.99,
+    "status": true,
+    "stock": 150,
+    "category": "Granos",
+    "thumbnails": [
+      "arroz-bolsa.jpg",
+      "arroz-contenido.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Huevos Orgánicos",
+    "description": "Huevos frescos de gallinas criadas en libertad",
+    "code": "HUE008",
+    "price": 5.99,
+    "status": true,
+    "stock": 80,
+    "category": "Huevos y Lácteos",
+    "thumbnails": [
+      "huevos-caja.jpg",
+      "huevos-abiertos.jpg"
+    ]
+  }
+]

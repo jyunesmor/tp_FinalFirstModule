@@ -1,6 +1,7 @@
 const express = require("express");
 const productRouter = require("./routes/productRouter.js");
 const viewsRouter = require("./routes/viewsRouter.js");
+const cartRouter = require("./routes/cartRouter.js");
 const { Server } = require("socket.io");
 const { engine } = require("express-handlebars");
 
@@ -28,6 +29,14 @@ app.use(
 	productRouter
 );
 app.use("/", viewsRouter);
+app.use(
+	"/cart",
+	(req, res, next) => {
+		req.io = io;
+		next();
+	},
+	cartRouter
+);
 
 app.get("/", (req, res) => {
 	res.setHeader("content-type", "text/plain");
