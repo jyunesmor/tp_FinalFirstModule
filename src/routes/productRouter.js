@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Ruta para Creacion Producto en base de datos
-router.post("/", validateProducts, async (req, res) => {
+router.post("/", validateProducts, validateNumbers, async (req, res) => {
 	try {
 		const {
 			title,
@@ -48,6 +48,16 @@ router.post("/", validateProducts, async (req, res) => {
 			category,
 			thumbnails,
 		} = req.body;
+
+		// Verificacion de existencia de producto por su codigo.
+		const codeExist = await verifyCode(code);
+		if (codeExist) {
+			req.io.emit("codeExist", code);
+			return res.status(400).send({
+				message: "El codigo de producto ya existe",
+			});
+		}
+
 		// Creacion automatica del Id, teniendo en cuenta el ultimo id de la base de datos.
 		const id = await generateId();
 		// Creacion de producto y persistencia en base de datos.
@@ -121,6 +131,18 @@ const generateId = async () => {
 		return id;
 	}
 	return id;
+};
+
+const verifyCode = async (code) => {
+	const products = await productManager.getProducts();
+	const product = products.find(
+		(product) =>
+			product.code === code.toUpperCase() || product.code === code.toLowerCase()
+	);
+	if (product) {
+		return true;
+	}
+	return false;
 };
 
 module.exports = router;

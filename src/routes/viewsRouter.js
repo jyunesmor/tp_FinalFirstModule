@@ -14,7 +14,8 @@ router.get("/realTimeProducts", async (req, res) => {
 
 router.get("/productsCart", async (req, res) => {
 	const products = await cartManager.getCart();
-	res.render("products", { products });
+	const totalPrice = products.reduce((acc, product) => acc + product.price, 0);
+	res.render("cartProducts", { products, totalPrice });
 });
 
 router.get("/product/:id", async (req, res) => {

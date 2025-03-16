@@ -1,19 +1,5 @@
 [
     {
-        "id": 2,
-        "title": "Arroz Blanco",
-        "description": "Arroz blanco de grano largo, calidad premium",
-        "code": "ARR004",
-        "price": 4.99,
-        "status": true,
-        "stock": 150,
-        "category": "Granos",
-        "thumbnails": [
-            "arroz-bolsa.jpg",
-            "arroz-contenido.jpg"
-        ]
-    },
-    {
         "id": 3,
         "title": "Atún en Lata",
         "description": "Atún en agua, bajo en grasa y alto en proteínas",
@@ -118,5 +104,38 @@
         "stock": "-2",
         "category": "Aceite",
         "thumbnails": "fideo.jpg"
+    },
+    {
+        "id": 12,
+        "title": "joutf",
+        "description": "Aceite de Oliva madura",
+        "code": "lokh",
+        "price": "215.54",
+        "status": "true",
+        "stock": "23",
+        "category": "Aceite",
+        "thumbnails": "fideoTira.jpg"
+    },
+    {
+        "id": 13,
+        "title": "jabon",
+        "description": "Jabon de manos",
+        "code": "JAB256",
+        "price": 24.56,
+        "status": "false",
+        "stock": 98,
+        "category": "Limpieza",
+        "thumbnails": "jabon.jpg"
+    },
+    {
+        "id": 14,
+        "title": "gret",
+        "description": "ads",
+        "code": "HWPDPRJ",
+        "price": 24.65,
+        "status": "true",
+        "stock": 54,
+        "category": "aasd",
+        "thumbnails": "asd"
     }
 ]

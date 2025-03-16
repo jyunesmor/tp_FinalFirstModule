@@ -7,7 +7,7 @@ socket.on("newProduct", () => {
 		icon: "success",
 		title: "El Producto se Creo correctamente",
 		showConfirmButton: false,
-		timer: 1500,
+		timer: 2500,
 	});
 });
 
@@ -18,7 +18,19 @@ socket.on("deleteProduct", () => {
 		icon: "success",
 		title: "El Producto se Elimino correctamente",
 		showConfirmButton: false,
-		timer: 1500,
+		timer: 2500,
+	});
+});
+
+socket.on("codeExist", () => {
+	window.location.reload();
+	Swal.fire({
+		position: "top-end",
+		icon: "warning",
+		title:
+			"El Producto se encuentra en la base de datos, Ingrese otro Producto",
+		showConfirmButton: false,
+		timer: 2500,
 	});
 });
 

@@ -1,22 +1,24 @@
 {{> header}}
 
-<div class="d-flex bg-info w-100 justify-content-around p-3">
-<h1>Products</h1>
-<div class="d-flex justify-content-space-evenly gap-3">
-	<input type="number" class="form-control" id="id" placeholder="ID">
-	<button id="delete" class="btn btn-primary">Delete</button>
-</div>
+<div class="d-flex w-100 justify-content-around p-3">
+	<h1>Products</h1>
+	<div class="d-flex justify-content-space-evenly gap-3 w-50">
+		<input type="number" class="form-control" id="id" placeholder="ID del Producto a Eliminar">
+		<button id="delete" class="btn btn-primary w-50">Eliminar Producto</button>
+	</div>
 </div>
 <div class="d-flex justify-content-space-evenly gap-3 w-100">
-	<div class="d-flex flex-wrap justify-content-center gap-3 w-75 bg-warning">
+	<div class="d-flex flex-wrap justify-content-center gap-3 w-75 bg-warning p-3">
 		{{#each products}}
 			<div class="card" style="width: 13rem;">
 				{{! <img src="..." class="card-img-top" alt="..." /> }}
-				<div class="card-body">
+				<div class="card-body p-3">
 					<h5 class="card-title">{{title}}</h5>
+					<p class="card-text">ID {{id}}</p>
 					<p class="card-text">Categoria {{category}}</p>
 					<p class="card-text">Precio ${{price}}</p>
 					<p class="card-text">Stock {{stock}}</p>
+					<p class="card-text">Code {{code}}</p>
 					<p class="card-text">Descripción {{description}}</p>
 					<div class="d-flex justify-content-between">
 						<a href="/product/{{id}}" class="btn btn-primary">Ver Detalle</a>
@@ -25,54 +27,55 @@
 			</div>
 		{{/each}}
 	</div>
-	<div class="w-25 bg-success">
-	<form id="form" action="/api/products" method="POST">
-		<div class="mb-3">
-			<label for="title" class="form-label">Nombre Producto</label>
-			<input type="text" class="form-control" id="title" name="title" />
-		</div>
-		<div class="mb-3">
-			<label for="code" class="form-label">Codigo Producto</label>
-			<input type="text" class="form-control" id="code" name="code" />
-		</div>
-		<div class="mb-3">
-			<label for="price" class="form-label">Precio Producto</label>
-			<input
-				type="number"
-				class="form-control"
-				id="price"
-				name="price"
-				min="0"
-				step="0.01"
-			/>
-		</div>
-		<div class="mb-3">
-			<label for="stock" class="form-label">Stock Producto</label>
-			<input type="number" class="form-control" id="stock" name="stock" />
-		</div>
-		<div class="mb-3">
-			<label for="category" class="form-label">Categoria Producto</label>
-			<input type="text" class="form-control" id="category" name="category" />
-		</div>
-		<div class="mb-3">
-			<label for="description" class="form-label">Descripción Producto</label>
-			<input
-				type="text"
-				class="form-control"
-				id="description"
-				name="description"
-			/>
-		</div>
-		<div class="mb-3">
-			<label for="status" class="form-label">Condición Producto</label>
-			<input type="text" class="form-control" id="status" name="status" />
-		</div>
-		<div class="mb-3">
-			<label for="thumbnails" class="form-label">Ruta Imagen Producto</label>
-			<input type="text" class="form-control" id="thumbnails" name="thumbnails" />
-		</div>
-		<button type="submit" class="btn btn-primary">Agregar Producto</button>
-	</form>
+	<div class="w-25 bg-success text-center p-3">
+		<h3>Alta Productos</h3>
+		<form id="form" action="/api/products" method="POST">
+			<div class="mb-3">
+				<label for="title" class="form-label">Nombre Producto</label>
+				<input type="text" class="form-control" id="title" name="title" />
+			</div>
+			<div class="mb-3">
+				<label for="code" class="form-label">Codigo Producto</label>
+				<input type="text" class="form-control" id="code" name="code" />
+			</div>
+			<div class="mb-3">
+				<label for="price" class="form-label">Precio Producto</label>
+				<input
+					type="number"
+					class="form-control"
+					id="price"
+					name="price"
+					min="0"
+					step="0.01"
+				/>
+			</div>
+			<div class="mb-3">
+				<label for="stock" class="form-label">Stock Producto</label>
+				<input type="number" class="form-control" id="stock" name="stock" />
+			</div>
+			<div class="mb-3">
+				<label for="category" class="form-label">Categoria Producto</label>
+				<input type="text" class="form-control" id="category" name="category" />
+			</div>
+			<div class="mb-3">
+				<label for="description" class="form-label">Descripción Producto</label>
+				<input
+					type="text"
+					class="form-control"
+					id="description"
+					name="description"
+				/>
+			</div>
+			<div class="mb-3">
+				<label for="status" class="form-label">Condición Producto</label>
+				<input type="text" class="form-control" id="status" name="status" />
+			</div>
+			<div class="mb-3">
+				<label for="thumbnails" class="form-label">Ruta Imagen Producto</label>
+				<input type="text" class="form-control" id="thumbnails" name="thumbnails" />
+			</div>
+			<button type="submit" class="btn btn-primary">Agregar Producto</button>
+		</form>
 	</div>
 </div>
 		<script src="/socket.io/socket.io.js"></script>
