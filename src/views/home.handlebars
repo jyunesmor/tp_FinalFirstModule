@@ -1,0 +1,25 @@
+{{> header}}
+
+<h1>Products</h1>
+<div class="d-flex justify-content-space-evenly gap-3">
+	<div class="d-flex flex-wrap gap-3">
+		{{#each products}}
+			<div class="card" style="width: 18rem;">
+				{{! <img src="..." class="card-img-top" alt="..." /> }}
+				<div class="card-body">
+					<h5 class="card-title">{{title}}</h5>
+					<p class="card-text">Categoria {{category}}</p>
+					<p class="card-text">Precio ${{price}}</p>
+					<p class="card-text">Stock {{stock}}</p>
+					<p class="card-text">Descripción {{description}}</p>
+					<div class="d-flex justify-content-between">
+						<a href="/product/{{id}}" class="btn btn-primary">Ver Detalle</a>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</div>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/products.js"></script>
+

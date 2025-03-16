@@ -34,20 +34,4 @@ router.post("/addCart/:id", async (req, res) => {
 	}
 });
 
-// Ruta para Eliminar Producto por ID
-router.delete("/:id", async (req, res) => {
-	try {
-		const { id } = req.params;
-		// Remocion del producto y persistencia en base de datos.
-		const deleteProduct = await productManager.removeProductsById(id);
-		req.io.emit("deleteProduct", deleteProduct);
-		res.status(201).send("Producto eliminado exitosamente");
-	} catch (error) {
-		res.status(500).json({
-			message: "Error interno del servidor",
-			error: error.message,
-		});
-	}
-});
-
 module.exports = router;

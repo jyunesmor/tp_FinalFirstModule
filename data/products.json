@@ -96,5 +96,27 @@
             "papel-paquete.jpg",
             "papel-individual.jpg"
         ]
+    },
+    {
+        "id": 9,
+        "title": "Detergente Liquido",
+        "description": "Detergente concentrado para ropa, aroma limon",
+        "code": "DET018",
+        "price": "5.36",
+        "status": "true",
+        "stock": "254",
+        "category": "Limpieza",
+        "thumbnails": "detergente-uso.jpg"
+    },
+    {
+        "id": 11,
+        "title": "juyu",
+        "description": "asd",
+        "code": "yut",
+        "price": "215.54",
+        "status": "true",
+        "stock": "-2",
+        "category": "Aceite",
+        "thumbnails": "fideo.jpg"
     }
 ]

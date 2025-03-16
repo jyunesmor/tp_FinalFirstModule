@@ -36,7 +36,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Ruta para Creacion Producto en base de datos
-router.post("/", validateProducts, validateNumbers, async (req, res) => {
+router.post("/", validateProducts, async (req, res) => {
 	try {
 		const {
 			title,
@@ -64,7 +64,7 @@ router.post("/", validateProducts, validateNumbers, async (req, res) => {
 		});
 
 		req.io.emit("newProduct", newProduct);
-		res.status(201);
+		res.status(201).send("Producto creado exitosamente");
 	} catch (error) {
 		res.status(500).json({
 			message: "Internal server error",
